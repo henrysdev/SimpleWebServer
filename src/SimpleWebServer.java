@@ -33,7 +33,7 @@ public class SimpleWebServer {
         for (String line; (line = br.readLine()) != null;) {
             if (line.isEmpty()) break;
             if (line.startsWith("Authorization: Basic ")) {
-                try {
+                try { // get the third argument
                     encodedAuth = line.split("\\s+")[2];
                 }
                 catch (Exception e) {
@@ -73,6 +73,7 @@ public class SimpleWebServer {
             }
         }
         else {
+            System.out.println("Not Authenticated");
             osw.write( "HTTP/1.0 403 Forbidden\n\n");
             osw.flush();
         }
